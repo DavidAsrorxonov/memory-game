@@ -20,6 +20,7 @@ function App() {
     }));
 
     setCards(finalCards);
+    setIsLocked(false);
     setMoves(0);
     setScore(0);
     setFlippedCards([]);
