@@ -6,6 +6,7 @@ import GameHeader from "./components/GameHeader";
 function App() {
   const [cards, setCards] = useState([]);
   const [flippedCards, setFlippedCards] = useState([]);
+  const [matchedCards, setMatchedCards] = useState([]);
 
   const initializeGame = () => {
     const finalCards = cardValues.map((value, index) => ({
@@ -44,7 +45,20 @@ function App() {
       const firstCard = cards[flippedCards[0]];
 
       if (firstCard.value === card.value) {
-        alert("Match!");
+        setTimeout(() => {
+          setMatchedCards((prev) => [...prev, firstCard.id, card.id]);
+
+          setCards((prev) =>
+            prev.map((c) => {
+              if (c.id === firstCard.id || c.id === card.id) {
+                return { ...c, isMatched: true };
+              } else {
+                return c;
+              }
+            })
+          );
+          setFlippedCards([]);
+        }, 500);
       } else {
         setTimeout(() => {
           const flippedBackCard = newCards.map((c) => {
