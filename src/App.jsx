@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { cardValues } from "../constants/cardValues";
 import Card from "./components/Card";
 import GameHeader from "./components/GameHeader";
+import WinMessage from "./components/WinMessage";
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -110,10 +111,14 @@ function App() {
     }
   };
 
+  const isGameOver = matchedCards.length === cardValues.length;
+
   return (
     <>
       <div className="app">
         <GameHeader score={score} moves={moves} onReset={initializeGame} />
+
+        {isGameOver && <WinMessage moves={moves} />}
 
         <div className="cards-grid">
           {cards.map((card, index) => (
