@@ -1,7 +1,11 @@
+import GameHeader from "./components/GameHeader";
+
 function App() {
   return (
     <>
-      <div className="app"></div>
+      <div className="app">
+        <GameHeader />
+      </div>
     </>
   );
 }

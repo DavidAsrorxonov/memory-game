@@ -1,7 +1,11 @@
 import React from "react";
 
 const GameHeader = () => {
-  return <div>GameHeader</div>;
+  return (
+    <div className="game-header">
+      <h1>Memory Card Game</h1>
+    </div>
+  );
 };
 
 export default GameHeader;
