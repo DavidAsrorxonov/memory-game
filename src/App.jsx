@@ -7,6 +7,8 @@ function App() {
   const [cards, setCards] = useState([]);
   const [flippedCards, setFlippedCards] = useState([]);
   const [matchedCards, setMatchedCards] = useState([]);
+  const [score, setScore] = useState(0);
+  const [moves, setMoves] = useState(0);
 
   const initializeGame = () => {
     const finalCards = cardValues.map((value, index) => ({
@@ -48,6 +50,8 @@ function App() {
         setTimeout(() => {
           setMatchedCards((prev) => [...prev, firstCard.id, card.id]);
 
+          setScore((prev) => prev + 1);
+
           setCards((prev) =>
             prev.map((c) => {
               if (c.id === firstCard.id || c.id === card.id) {
@@ -74,13 +78,15 @@ function App() {
           setFlippedCards([]);
         }, 1000);
       }
+
+      setMoves((prev) => prev + 1);
     }
   };
 
   return (
     <>
       <div className="app">
-        <GameHeader score={3} moves={10} />
+        <GameHeader score={score} moves={moves} />
 
         <div className="cards-grid">
           {cards.map((card, index) => (
